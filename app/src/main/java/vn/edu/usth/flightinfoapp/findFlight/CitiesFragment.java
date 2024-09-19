@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +35,11 @@ public class CitiesFragment extends Fragment {
         searchFlightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FlightByCityFragment.class);
-                startActivity(intent);
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, new FlightByCityFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
-        });}
+        });
+    }
 }
