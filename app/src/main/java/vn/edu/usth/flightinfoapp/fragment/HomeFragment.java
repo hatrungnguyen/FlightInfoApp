@@ -23,8 +23,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 
 import vn.edu.usth.flightinfoapp.R;
-import vn.edu.usth.flightinfoapp.findflight.FlightNumberFragment;
-import vn.edu.usth.flightinfoapp.findflight.FlightViewPagerAdapter;
+import vn.edu.usth.flightinfoapp.findFlight.FlightNumberFragment;
+import vn.edu.usth.flightinfoapp.findFlight.FlightViewPagerAdapter;
 import vn.edu.usth.flightinfoapp.widget.CustomViewPager;
 
 /**
