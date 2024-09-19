@@ -86,7 +86,7 @@
         android:layout_below="@+id/topbar"
         android:layout_marginTop="20dp"/>
 
-    <vn.edu.usth.test.widget.CustomViewPager
+    <vn.edu.usth.flightinfoapp.widget.CustomViewPager
         android:id="@+id/cities_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
