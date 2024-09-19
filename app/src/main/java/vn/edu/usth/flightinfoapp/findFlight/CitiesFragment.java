@@ -14,32 +14,24 @@ import android.view.ViewGroup;
 
 import com.google.android.material.button.MaterialButton;
 
+import vn.edu.usth.flightinfoapp.MainActivity;
 import vn.edu.usth.flightinfoapp.R;
 
 
 public class CitiesFragment extends Fragment {
 
-
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cities, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         MaterialButton searchFlightButton = view.findViewById(R.id.search_flight_button);
-        searchFlightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new FlightByCityFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+        searchFlightButton.setOnClickListener(v -> {
+            ((MainActivity) getActivity()).showFlightByCityFragment();
         });
     }
 }

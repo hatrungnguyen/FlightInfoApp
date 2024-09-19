@@ -2,9 +2,11 @@ package vn.edu.usth.flightinfoapp;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import vn.edu.usth.flightinfoapp.findFlight.FlightByCityFragment;
+import vn.edu.usth.flightinfoapp.findFlight.FlightDetailFragment;
 
-import vn.edu.usth.flightinfoapp.findFlight.CitiesFragment;
-import vn.edu.usth.flightinfoapp.findFlight.FlightNumberFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,24 +17,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new LoginFragment())
-                    .commit();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new LoginFragment());
+            transaction.commit();
         }
-
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.fragment_container, new CitiesFragment())
-//                    .commit();
-//        }
-//
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.fragment_container, new FlightNumberFragment())
-//                    .commit();
-//        }
     }
 
+    public void showFlightByCityFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new FlightByCityFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
-
+    public void showFlightDetailFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
+
+
