@@ -27,10 +27,7 @@ import vn.edu.usth.flightinfoapp.findFlight.FlightNumberFragment;
 import vn.edu.usth.flightinfoapp.findFlight.FlightViewPagerAdapter;
 import vn.edu.usth.flightinfoapp.widget.CustomViewPager;
 
-/**
- * A simple {@link Fragment} subclass.
 
- */
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {

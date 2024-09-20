@@ -17,7 +17,7 @@ public class LoginFragment extends Fragment {
     private Button loginButton;
 
     public LoginFragment() {
-        // Required empty public constructor
+
     }
 
     @Nullable
@@ -41,7 +41,7 @@ public class LoginFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
 
-                    // Transition to MenuFragment after login
+
                     MenuFragment menuFragment = new MenuFragment();
                     Bundle args = new Bundle();
                     args.putString("username", username.trim());
@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
 
                     if (getActivity() != null) {
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container, menuFragment) // Use fragment_container ID
+                                .replace(R.id.fragment_container, menuFragment)
                                 .addToBackStack(null)
                                 .commit();
                     }
