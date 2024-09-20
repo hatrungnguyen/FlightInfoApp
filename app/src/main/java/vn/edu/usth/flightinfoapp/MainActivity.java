@@ -36,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    public void showFlightDetail1Fragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    public void showFlightDetail2Fragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
 
 
