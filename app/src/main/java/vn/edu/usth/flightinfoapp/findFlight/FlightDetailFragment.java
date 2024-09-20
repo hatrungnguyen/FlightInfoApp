@@ -20,12 +20,9 @@ public class FlightDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flight_detail, container, false);
 
-        // Initialize the back arrow
         ImageView backArrow = view.findViewById(R.id.btn_back);
 
-        // Set click listener for the back arrow
         backArrow.setOnClickListener(v -> {
-            // Pop the current fragment from the back stack, navigating back to the previous fragment
             if (getFragmentManager() != null) {
                 getFragmentManager().popBackStack();
             }
