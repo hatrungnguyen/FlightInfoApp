@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import vn.edu.usth.flightinfoapp.findFlight.FlightByCityFragment;
+import vn.edu.usth.flightinfoapp.findFlight.FlightDetail1Fragment;
+import vn.edu.usth.flightinfoapp.findFlight.FlightDetail2Fragment;
 import vn.edu.usth.flightinfoapp.findFlight.FlightDetailFragment;
 
 
@@ -38,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showFlightDetail1Fragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
+        transaction.replace(R.id.fragment_container, new FlightDetail1Fragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
     public void showFlightDetail2Fragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
+        transaction.replace(R.id.fragment_container, new FlightDetail2Fragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
