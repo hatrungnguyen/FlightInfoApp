@@ -34,7 +34,6 @@ import vn.edu.usth.flightinfoapp.widget.CustomViewPager;
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     private TabLayout tabLayout;
@@ -54,14 +53,11 @@ public class HomeFragment extends Fragment {
         viewPager.setPagingEnabled(false);
 
         tabLayout.setupWithViewPager(viewPager);
-        // Loop through all tabs and set the custom background and text
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 View customTabView = LayoutInflater.from(getContext()).inflate(R.layout.tab_custom, null);
                 TextView tabText = customTabView.findViewById(R.id.tab_text);
-
-                // Set the text based on the tab position
                 switch (i) {
                     case 0:
                         tabText.setText("Cities");
@@ -70,8 +66,6 @@ public class HomeFragment extends Fragment {
                         tabText.setText("Flight Number");
                         break;
                 }
-
-                // Apply the custom view to the tab
                 tab.setCustomView(customTabView);
             }
         }
