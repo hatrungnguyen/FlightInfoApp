@@ -43,11 +43,11 @@ public class FlightByCityFragment extends Fragment {
         });
         MaterialButton searchFlightButton1 = view.findViewById(R.id.details2);
         searchFlightButton1.setOnClickListener(v -> {
-            ((MainActivity) getActivity()).showFlightDetailFragment();
+            ((MainActivity) getActivity()).showFlightDetail1Fragment();
         });
         MaterialButton searchFlightButton2 = view.findViewById(R.id.details3);
         searchFlightButton2.setOnClickListener(v -> {
-            ((MainActivity) getActivity()).showFlightDetailFragment();
+            ((MainActivity) getActivity()).showFlightDetail2Fragment();
         });
 
     }
