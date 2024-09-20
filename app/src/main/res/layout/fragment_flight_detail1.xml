@@ -48,9 +48,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:gravity="center"
-                android:text=" TT0309"
+                android:text="AS123"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -59,9 +59,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:gravity="center"
-                android:text="New York (JFK)"
+                android:text="Detroit, MI (DTW)"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -69,6 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:text=" - "
                 android:textColor="#000000"
@@ -79,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Los Angeles (LAX)"
+                android:text="Honolulu, HI (HNL)"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -90,7 +91,7 @@
             android:layout_height="257dp"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/plane_image" />
+            android:src="@drawable/plane_image1" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -124,7 +125,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="06:50 (UTC-7)"
+                            android:text="8:30 AM"
                             android:textColor="#43C843"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -153,7 +154,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="11:50 (UTC-4)"
+                            android:text="11:45 AM"
                             android:textColor="#43C843"
                             android:textSize="18sp"
                             android:textStyle="bold" />
