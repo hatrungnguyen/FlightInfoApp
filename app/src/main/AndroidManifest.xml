@@ -12,9 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlightInfoApp"
         tools:targetApi="31">
-
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.SplashScreen"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignUpPassengerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.RetrievalFailedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PassengerHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChooseRoleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
