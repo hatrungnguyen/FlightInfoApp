@@ -1,9 +1,10 @@
-package vn.edu.usth.flightinfoapp;
+package vn.edu.usth.flightinfoapp.activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import vn.edu.usth.flightinfoapp.R;
 import vn.edu.usth.flightinfoapp.findFlight.FlightByCityFragment;
 import vn.edu.usth.flightinfoapp.findFlight.FlightDetail1Fragment;
 import vn.edu.usth.flightinfoapp.findFlight.FlightDetail2Fragment;
