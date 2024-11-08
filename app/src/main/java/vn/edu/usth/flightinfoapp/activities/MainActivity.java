@@ -1,56 +1,156 @@
 package vn.edu.usth.flightinfoapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import vn.edu.usth.flightinfoapp.R;
-import vn.edu.usth.flightinfoapp.findFlight.FlightByCityFragment;
-import vn.edu.usth.flightinfoapp.findFlight.FlightDetail1Fragment;
-import vn.edu.usth.flightinfoapp.findFlight.FlightDetail2Fragment;
-import vn.edu.usth.flightinfoapp.findFlight.FlightDetailFragment;
+import vn.edu.usth.flightinfoapp.database.DataBaseHelper;
+import vn.edu.usth.flightinfoapp.database.SharedPrefManager;
+import vn.edu.usth.flightinfoapp.model.Flight;
+import vn.edu.usth.flightinfoapp.tasks.ConnectionAsyncTask;
+import vn.edu.usth.flightinfoapp.tasks.FlightJsonParser;
+import vn.edu.usth.flightinfoapp.tasks.Hash;
 
 
+public class MainActivity extends AppCompatActivity implements ConnectionAsyncTask.TaskCallback {
 
-public class MainActivity extends AppCompatActivity {
+    private static final String IS_LOGGED_IN = "IsLoggedIn";
+    private static final String USER_ROLE = "UserRole";
+    private static final String SAVED_EMAIL = "SavedEmail";
+    private static final String USER_NAME_KEY = "UserName";
+    private static final String REMEMBER_ME = "RememberMe";
+    Button signUp;
+    Button login;
+    EditText email;
+    EditText password;
+    CheckBox rememberMe;
+    DataBaseHelper dataBaseHelper;
+    List<Flight> flightsAdded = new ArrayList<>();
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new LoginFragment());
-            transaction.commit();
+
+        dataBaseHelper = new DataBaseHelper(MainActivity.this);
+        sharedPrefManager = SharedPrefManager.getInstance(MainActivity.this);
+
+        signUp = findViewById(R.id.buttonSignUp);
+        login = findViewById(R.id.buttonLogin);
+        email = findViewById(R.id.editEmail);
+        password = findViewById(R.id.editPassword);
+        rememberMe = findViewById(R.id.checkBox);
+
+
+        boolean isLoggedIn = sharedPrefManager.readBoolean(IS_LOGGED_IN, false);
+        String savedEmail = sharedPrefManager.readString(SAVED_EMAIL, "");
+
+        ConnectionAsyncTask connectionAsyncTask = new ConnectionAsyncTask(MainActivity.this);
+        connectionAsyncTask.execute("https://mocki.io/v1/9261f6be-a97a-4ddb-8e7a-14dbdc7d8acc");
+
+        if (sharedPrefManager.readBoolean(REMEMBER_ME, false) && !savedEmail.isEmpty())
+            email.setText(savedEmail);
+
+        if (isLoggedIn)
+            if (sharedPrefManager.readString(USER_ROLE, "").equals("Passenger"))
+                navigateToPassengerHome();
+
+
+        login.setOnClickListener(v -> {
+            String emailText = email.getText().toString();
+            String passwordText = Hash.hashPassword(password.getText().toString());
+            if (emailText.isEmpty() || passwordText.isEmpty()) {
+                displayToast("Please enter both email and password");
+                return;
+            }
+
+            boolean isValidLogin = dataBaseHelper.checkUserCredentials(emailText, passwordText);
+            if (isValidLogin) {
+                sharedPrefManager.writeBoolean(REMEMBER_ME, rememberMe.isChecked());
+
+                sharedPrefManager.writeString(SAVED_EMAIL, emailText);
+                String userName = getUserNameFromDatabase(emailText);
+
+                sharedPrefManager.writeString(USER_NAME_KEY, userName);
+                sharedPrefManager.writeBoolean(IS_LOGGED_IN, true);
+                String userRole = getUserRoleFromDatabase(emailText);
+                sharedPrefManager.writeString(USER_ROLE, userRole);
+                sharedPrefManager.apply();
+
+                if (userRole.equals("Passenger")) navigateToPassengerHome();
+            } else displayToast("Invalid email or password");
+        });
+
+        signUp.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ChooseRoleActivity.class);
+            startActivity(intent);
+        });
+
+    }
+
+    private String getUserNameFromDatabase(String email) {
+        try (DataBaseHelper dataBaseHelper = new DataBaseHelper(this)) {
+            return dataBaseHelper.getUserName(email);
         }
     }
 
-    public void showFlightByCityFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightByCityFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private String getUserRoleFromDatabase(String email) {
+        try (DataBaseHelper dataBaseHelper = new DataBaseHelper(this)) {
+            return dataBaseHelper.getUserRole(email);
+        }
     }
 
-    public void showFlightDetailFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightDetailFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+    private void navigateToPassengerHome() {
+        dataBaseHelper.close();
+        Intent intent = new Intent(MainActivity.this, PassengerHomeActivity.class);
+        startActivity(intent);
+        finish();
     }
-    public void showFlightDetail1Fragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightDetail1Fragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
-    public void showFlightDetail2Fragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, new FlightDetail2Fragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+
+    private void displayToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onTaskSuccess(String result) {
+        displayToast("Connected!");
+        List<Flight> flights = FlightJsonParser.getObjectFromJson(result);
+        Log.d("MainActivity", "onTaskSuccess: " + flights);
+    }
+
+    @Override
+    public void onTaskFailure() {
+
+    }
+
+
 }
-
-
