@@ -44,7 +44,7 @@ dependencies {
     implementation libs.androidx.lifecycle.livedata.ktx
     implementation libs.androidx.lifecycle.viewmodel.ktx
     implementation libs.squareup.okhttp
-    implementation libs.dotsindicator
+    implementation 'com.tbuonomo:dotsindicator:4.3'
     implementation libs.ticketview
     implementation libs.window
     implementation libs.material.v120alpha03
