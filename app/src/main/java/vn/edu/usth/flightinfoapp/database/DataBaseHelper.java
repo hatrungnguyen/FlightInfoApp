@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "FIRST_NAME TEXT, " +
                 "LAST_NAME TEXT, " +
                 "HASHED_PASSWORD TEXT, " +
-                "ROLE TEXT, " +  // Admin or Passenger
+                "ROLE TEXT, " +
                 "PASSPORT_NUMBER TEXT, " +
                 "PASSPORT_ISSUE_DATE TEXT, " +
                 "PASSPORT_ISSUE_PLACE TEXT, " +
@@ -167,13 +167,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put("LAST_NAME", passenger.getLastName());
         contentValues.put("HASHED_PASSWORD", passenger.getHashedPassword());
         contentValues.put("ROLE", "Passenger");
-//        contentValues.put("PASSPORT_NUMBER", passenger.getPassportNumber());
-//        contentValues.put("PASSPORT_ISSUE_DATE", passenger.getPassportIssueDate());
-//        contentValues.put("PASSPORT_ISSUE_PLACE", passenger.getPassportIssuePlace());
-//        contentValues.put("PASSPORT_EXPIRATION_DATE", passenger.getPassportExpiryDate());
-//        contentValues.put("FOOD_PREFERENCE", passenger.getFoodPreference());
-//        contentValues.put("DATE_OF_BIRTH", passenger.getDateOfBirth());
-//        contentValues.put("NATIONALITY", passenger.getNationality());
+
 
         return sqLiteDatabase.update("USER", contentValues, "EMAIL = ?", new String[]{oldEmail});
     }
