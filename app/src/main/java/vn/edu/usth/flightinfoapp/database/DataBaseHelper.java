@@ -19,7 +19,7 @@ import vn.edu.usth.flightinfoapp.model.Passenger;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "JJetSet.db";
+    private static final String DATABASE_NAME = "GreenHill.db";
     private static final int DATABASE_VERSION = 1;
 
     public DataBaseHelper(@Nullable Context context) {
