@@ -35,7 +35,7 @@ import vn.edu.usth.flightinfoapp.utils.FlightAdapter;
 
 
 public class HomeFragment extends Fragment {
-    private static final String URLAPI = "https://api.aviationstack.com/v1/flights?access_key=8676e9085b95b51763f64bc0950f68b7";
+    private static final String URLAPI = "https://api.aviationstack.com/v1/flights?access_key=0e7bd94c64cd63232cce49f7079e1de4";
     private RecyclerView recyclerView;
     private FlightAdapter flightAdapter;
     private ProgressBar progressBar;
@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        progressBar = view.findViewById(R.id.progressBar); // Assuming you have a ProgressBar in the layout
+        progressBar = view.findViewById(R.id.progressBar);
 
         setupRecyclerView();
         fetchFlightsFromApi();
@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
 
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        flightAdapter = new FlightAdapter(flightList, flight -> openFlightDetails(flight)); // Define the click action
+        flightAdapter = new FlightAdapter(flightList, flight -> openFlightDetails(flight));
         recyclerView.setAdapter(flightAdapter);
     }
 
