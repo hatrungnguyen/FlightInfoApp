@@ -45,7 +45,7 @@ dependencies {
     implementation libs.androidx.lifecycle.viewmodel.ktx
     implementation libs.squareup.okhttp
     implementation libs.dotsindicator
-    implementation libs.ticketview
+//    implementation libs.ticketview
     implementation libs.window
     implementation libs.material.v120alpha03
     testImplementation libs.junit
