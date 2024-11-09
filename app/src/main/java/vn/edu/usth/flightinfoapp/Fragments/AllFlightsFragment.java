@@ -55,7 +55,7 @@ public class AllFlightsFragment extends Fragment {
     private TextInputEditText editDepartureCity, editArrivalCity, editDepartureDate;
     private Button buttonFilter;
     private List<Flight> allFlights = new ArrayList<>();
-    private static final String URLAPI = "https://api.aviationstack.com/v1/flights?access_key=8676e9085b95b51763f64bc0950f68b7";
+    private static final String URLAPI = "https://api.aviationstack.com/v1/flights?access_key=0e7bd94c64cd63232cce49f7079e1de4";
 
     public AllFlightsFragment() {}
 
