@@ -76,7 +76,8 @@ public class SignUpPassengerActivity extends AppCompatActivity {
         pagerAdapter = new VerticalPagerAdapter(LAYOUTS);
         viewPager2.setAdapter(pagerAdapter);
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
-        dotsIndicator.attachTo(viewPager2);
+//        dotsIndicator.attachTo(viewPager2);
+        dotsIndicator.setViewPager2(viewPager2);
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
