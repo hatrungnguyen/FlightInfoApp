@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jet Set"
+        android:text="Pink Jet"
         android:textSize="24sp"
         android:textColor="@color/darkPurple"
         android:textStyle="bold" />
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Osama"
+        android:text="User"
         android:textColor="@color/darkPurple"
         android:textSize="14sp" />
 
