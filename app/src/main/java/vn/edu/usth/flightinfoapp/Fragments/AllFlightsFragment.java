@@ -129,7 +129,7 @@ public class AllFlightsFragment extends Fragment {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.e("API", "Lỗi khi lấy dữ liệu chuyến bay", e);
+                Log.e("API", "Flight data analysis error", e);
                 getActivity().runOnUiThread(() -> progressBar.setVisibility(View.GONE));
             }
 
@@ -155,7 +155,7 @@ public class AllFlightsFragment extends Fragment {
             Type listType = new TypeToken<List<Flight>>() {}.getType();
             return new Gson().fromJson(jsonObject.get("data"), listType);
         } catch (Exception e) {
-            Log.e("API", "Lỗi khi phân tích dữ liệu chuyến bay", e);
+            Log.e("API", "Flight data analysis error", e);
             return null;
         }
     }
