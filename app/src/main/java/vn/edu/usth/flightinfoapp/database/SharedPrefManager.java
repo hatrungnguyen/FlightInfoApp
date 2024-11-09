@@ -3,11 +3,6 @@ package vn.edu.usth.flightinfoapp.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.gson.Gson;
-
-import java.util.List;
-
-import vn.edu.usth.flightinfoapp.model.Flight;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "JetSetPrefs";
@@ -18,7 +13,6 @@ public class SharedPrefManager {
     private static SharedPreferences sharedPreferences = null;
     private static SharedPrefManager ourInstance = null;
     private final SharedPreferences.Editor editor;
-    private final Gson gson = new Gson();
 
     private SharedPrefManager(Context context) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, SHARED_PREF_PRIVATE);
@@ -54,12 +48,6 @@ public class SharedPrefManager {
     public void apply() {
         editor.apply();
     }
-
-    public void saveFlightList(List<Flight> flights) {
-        String json = gson.toJson(flights);
-        writeString(FLIGHT_LIST_KEY, json);
-    }
-
 
     public String getUserName() {
         return sharedPreferences.getString(USER_NAME_KEY, "");
