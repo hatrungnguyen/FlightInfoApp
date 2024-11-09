@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FlightInfoApp"
-include ':app'
+rootProject.name = "JetSet"
+include(":app")
